@@ -11,91 +11,91 @@ function getLocalToday() {
 const fallbackData = {
   company: {
     name: 'JAIDES LLC',
-    tagline: 'Real estate stewardship and angel investment with a long-view mindset.',
+    tagline: 'We invest in property and promising technology companies.',
     summary:
-      'JAIDES LLC is a family-led investment firm focused on thoughtful real estate, strategic capital partnerships, and enduring value creation.',
+      'JAIDES LLC is a family-run investment company. We look for solid real estate and early-stage software and AI businesses solving real problems.',
     mission:
-      'Operate with patience, clarity, and disciplined stewardship across both property and private capital decisions.',
+      'We invest patiently and work directly with founders when our experience can help.',
     email: 'jayansrini@jaides.com',
   },
   highlights: [
     {
       title: 'Real Estate',
       description:
-        'Acquisition and oversight of residential and mixed-use opportunities with a focus on durable value.',
+        'Residential and mixed-use properties with sound fundamentals and a clear plan for long-term ownership.',
     },
     {
-      title: 'Angel Investing',
+      title: 'Technology Companies',
       description:
-        'Selective early-stage backing for founders building resilient, practical businesses.',
+        'Early-stage software and technology companies with a useful product, capable founders, and a realistic path to customers.',
     },
     {
-      title: 'Family Office Style',
+      title: 'Practical AI',
       description:
-        'A calm, disciplined approach centered on stewardship, trust, and long-term alignment.',
+        'AI companies that make work easier, improve decisions, or solve a specific business problem.',
     },
   ],
   services: [
     {
-      title: 'Property Strategy',
+      title: 'Early-Stage Capital',
       description:
-        'Thoughtful evaluation of opportunities, hold strategies, and portfolio fit.',
+        'We invest selectively and prefer companies with a clear product, a real customer need, and founders who know their market.',
     },
     {
-      title: 'Capital Partnerships',
+      title: 'Founder Guidance',
       description:
-        'Relationship-driven conversations with founders, operators, and aligned partners.',
+        'We can help think through enterprise sales, partnerships, operations, hiring, and the practical work of growing a company.',
     },
     {
-      title: 'Long-Term Advisory Lens',
+      title: 'Real Estate',
       description:
-        'Measured judgment rooted in risk awareness, timing discipline, and trust.',
+        'We also consider property opportunities where patient ownership and careful management can make a difference.',
     },
   ],
   stats: [
-    { label: 'Decision style', value: 'Patient + Disciplined' },
-    { label: 'Primary sectors', value: 'Property + Early Stage' },
-    { label: 'Operating posture', value: 'Selective + Relationship-Led' },
+    { label: 'Investment style', value: 'Long-term' },
+    { label: 'Company focus', value: 'Technology + AI' },
+    { label: 'How we help', value: 'Capital + guidance' },
   ],
   timeline: [
     {
-      year: 'Vision',
-      title: 'Define the family office mindset',
+      year: 'Learn',
+      title: 'Understand the product',
       description:
-        'Create a clear point of view around stewardship, quality opportunities, and long-range conviction.',
+        'We start with the problem, the customer, and why the team is well suited to solve it.',
     },
     {
-      year: 'Growth',
-      title: 'Build aligned relationships',
+      year: 'Invest',
+      title: 'Back a clear plan',
       description:
-        'Cultivate trusted conversations with operators, founders, and strategic collaborators.',
+        'We look for a sensible use of capital and a path to building a durable business.',
     },
     {
-      year: 'Scale',
-      title: 'Expand with discipline',
+      year: 'Help',
+      title: 'Stay useful after the check',
       description:
-        'Pursue opportunities that fit the firm\'s values, pace, and appetite for durable value creation.',
+        'When useful, we offer practical guidance, introductions, and an experienced outside perspective.',
     },
   ],
   appointment_options: {
-    topics: ['Real Estate', 'Angel Investing', 'Partnership Inquiry', 'General Introduction'],
+    topics: ['Real Estate', 'Technology / AI', 'Partnership Inquiry', 'General Introduction'],
     times: ['9:00 AM', '11:30 AM', '2:00 PM', '4:30 PM'],
   },
   founders: [
     {
       name: 'Srinivasan Santhanam',
       role: 'Co-Founder',
-      bio: 'Srinivasan is a results-oriented executive with a track record in global business transformation and enterprise technology. His experience leading complex initiatives informs JAIDES\' disciplined approach to evaluating opportunities, building partnerships, and creating durable value.',
+      bio: 'Srinivasan has led global business transformation and enterprise technology work. At JAIDES, he helps evaluate products, enterprise sales opportunities, and what it will take for a company to scale.',
       focus:
-        'Business transformation, investment discipline, and long-term value creation.',
+        'Enterprise technology, business transformation, and growth strategy.',
       linkedin: 'https://www.linkedin.com/in/srini-santhanam-7737556/',
     },
     {
       name: 'Deepa Lakshmanan',
       role: 'Co-Founder',
-      bio: 'Deepa brings more than 15 years of leadership experience across human resources, operations, contracts, finance, and organizational development. Her people-first perspective and operational insight help JAIDES assess leadership teams, strengthen partnerships, and support responsible growth.',
+      bio: 'Deepa brings more than 15 years of experience across human resources, operations, contracts, and finance. She helps founders think through hiring, leadership, team structure, and day-to-day operations.',
       focus:
-        'People strategy, organizational development, and operational leadership.',
+        'People, hiring, operations, and organizational development.',
       linkedin: 'https://www.linkedin.com/in/deepa-lakshmanan-10071243/',
     },
   ],
@@ -199,7 +199,7 @@ export default function App() {
       <>
         <section className="hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Family-led investment company</p>
+            <p className="eyebrow">Real estate + early-stage technology</p>
             <h1>{data.company.tagline}</h1>
             <p className="hero-text">{data.company.summary}</p>
             <div className="hero-actions">
@@ -212,26 +212,21 @@ export default function App() {
             </div>
           </div>
 
-          <aside className="hero-panel">
-            <p className="panel-label">Our approach</p>
-            <h2>Conviction balanced by discipline.</h2>
-            <p>{data.company.mission}</p>
-            <div className="stats-grid">
-              {data.stats.map((item) => (
-                <article className="stat-card" key={item.label}>
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
-                </article>
-              ))}
-            </div>
-          </aside>
+          <figure className="hero-visual">
+            <img
+              src="/images/jaides-hero-tech.jpg"
+              alt="A modern workspace with natural materials and jade accents"
+              fetchPriority="high"
+            />
+            <figcaption>{data.company.mission}</figcaption>
+          </figure>
         </section>
 
         <section className="focus-section">
           <SectionHeader
-            eyebrow="At a glance"
-            title="Two investment disciplines. One long-term perspective."
-            text="We bring the same patient, relationship-led approach to tangible real estate assets and promising early-stage businesses."
+            eyebrow="What we invest in"
+            title="Property, technology, and useful AI."
+            text="We prefer understandable businesses, practical products, and teams that care about execution."
           />
           <div className="card-grid">
             {data.highlights.map((item, index) => (
@@ -252,9 +247,29 @@ export default function App() {
       <>
         <SectionHeader
           eyebrow="Focus Areas"
-          title="Disciplined capital, grounded judgment, and an operator's perspective."
-          text="JAIDES evaluates each opportunity through the lens of long-term fundamentals, aligned leadership, and the potential to create meaningful, sustainable value."
+          title="We like technology that solves a real problem."
+          text="JAIDES looks at early-stage software and AI companies. We are most interested when the product has a clear use and the founders understand their customers."
         />
+        <section className="guidance-feature">
+          <img
+            src="/images/jaides-ai-guidance.jpg"
+            alt="A product team reviewing an AI product plan around a table"
+            loading="lazy"
+          />
+          <div className="guidance-copy">
+            <p className="eyebrow">How we work with founders</p>
+            <h2>Capital, plus practical help.</h2>
+            <p>
+              When founders want it, we can share experience from enterprise technology,
+              operations, and people leadership.
+            </p>
+            <ul>
+              <li><strong>Customers:</strong> enterprise sales, partnerships, and market fit.</li>
+              <li><strong>Company building:</strong> hiring, team structure, and operations.</li>
+              <li><strong>Growth:</strong> priorities, introductions, and an outside perspective.</li>
+            </ul>
+          </div>
+        </section>
         <div className="card-grid">
           {data.services.map((item, index) => (
             <article className="info-card" key={item.title}>
@@ -266,8 +281,8 @@ export default function App() {
         </div>
         <section className="timeline-section">
           <SectionHeader
-            eyebrow="Approach"
-            title="A calm three-part rhythm for how the firm grows."
+            eyebrow="Our process"
+            title="Learn, invest, and stay useful."
           />
           <div className="timeline-grid">
             {data.timeline.map((item) => (
@@ -288,8 +303,8 @@ export default function App() {
       <>
         <SectionHeader
           eyebrow="Leadership"
-          title="Experienced leadership with a shared commitment to thoughtful growth."
-          text="JAIDES combines enterprise transformation expertise with people, operations, and organizational leadership to bring a balanced perspective to every opportunity."
+          title="Experience in technology, operations, and people."
+          text="The founders bring different perspectives to the same question: what does this company need to grow well?"
         />
         <div className="founder-grid founder-grid-detailed">
           {data.founders.map((founder) => (
@@ -322,8 +337,8 @@ export default function App() {
         <section className="schedule-panel">
           <SectionHeader
             eyebrow="Appointments"
-            title="Start a focused conversation with JAIDES."
-            text="Share a few details about your opportunity or partnership idea, and our team will follow up to find the right time to connect."
+            title="Tell us what you are building."
+            text="Share a few details about your company, property, or partnership idea. We will follow up by email."
           />
           <div className="appointment-options">
             <article className="mini-card">
@@ -421,8 +436,8 @@ export default function App() {
       <>
         <SectionHeader
           eyebrow="Contact"
-          title="Let's explore what we can build for the long term."
-          text="We welcome thoughtful introductions from property owners, founders, operators, and partners whose values align with ours."
+          title="Get in touch with JAIDES."
+          text="We welcome introductions from technology founders, property owners, operators, and potential partners."
         />
         <div className="contact-grid">
           <article className="mini-card">
@@ -435,7 +450,7 @@ export default function App() {
           <article className="mini-card">
             <p className="contact-label">What we discuss</p>
             <h3>Investment opportunities</h3>
-            <p>Real estate, early-stage ventures, strategic introductions, and aligned capital partnerships.</p>
+            <p>Real estate, software and AI companies, founder guidance, and partnerships.</p>
           </article>
           <article className="mini-card">
             <p className="contact-label">Prefer a meeting?</p>
@@ -495,7 +510,7 @@ export default function App() {
       <footer className="site-footer">
         <div>
           <strong>JAIDES LLC</strong>
-          <p>Real estate stewardship and angel investment with a long-view mindset.</p>
+          <p>Investing in real estate and early-stage technology.</p>
         </div>
         <div className="footer-actions">
           <a href={`mailto:${data.company.email}`}>{data.company.email}</a>

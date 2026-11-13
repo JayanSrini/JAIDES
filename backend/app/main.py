@@ -22,71 +22,71 @@ app.add_middleware(
 COMPANY_PROFILE = {
     "company": {
         "name": "JAIDES LLC",
-        "tagline": "Real estate stewardship and angel investment with a long-view mindset.",
+        "tagline": "We invest in property and promising technology companies.",
         "summary": (
-            "JAIDES LLC is a family-led investment firm focused on thoughtful real"
-            " estate, strategic capital partnerships, and enduring value creation."
+            "JAIDES LLC is a family-run investment company. We look for solid real"
+            " estate and early-stage software and AI businesses solving real problems."
         ),
         "mission": (
-            "Operate with patience, clarity, and disciplined stewardship across both"
-            " property and private capital decisions."
+            "We invest patiently and work directly with founders when our experience"
+            " can help."
         ),
         "email": "jayansrini@jaides.com",
     },
     "highlights": [
         {
             "title": "Real Estate",
-            "description": "Acquisition and oversight of residential and mixed-use opportunities with a focus on durable value.",
+            "description": "Residential and mixed-use properties with sound fundamentals and a clear plan for long-term ownership.",
         },
         {
-            "title": "Angel Investing",
-            "description": "Selective early-stage backing for founders building resilient, practical businesses.",
+            "title": "Technology Companies",
+            "description": "Early-stage software and technology companies with a useful product, capable founders, and a realistic path to customers.",
         },
         {
-            "title": "Family Office Style",
-            "description": "A calm, disciplined approach centered on stewardship, trust, and long-term alignment.",
+            "title": "Practical AI",
+            "description": "AI companies that make work easier, improve decisions, or solve a specific business problem.",
         },
     ],
     "services": [
         {
-            "title": "Property Strategy",
-            "description": "Thoughtful evaluation of opportunities, hold strategies, and portfolio fit.",
+            "title": "Early-Stage Capital",
+            "description": "We invest selectively and prefer companies with a clear product, a real customer need, and founders who know their market.",
         },
         {
-            "title": "Capital Partnerships",
-            "description": "Relationship-driven conversations with founders, operators, and aligned partners.",
+            "title": "Founder Guidance",
+            "description": "We can help think through enterprise sales, partnerships, operations, hiring, and the practical work of growing a company.",
         },
         {
-            "title": "Long-Term Advisory Lens",
-            "description": "Measured judgment rooted in risk awareness, timing discipline, and trust.",
+            "title": "Real Estate",
+            "description": "We also consider property opportunities where patient ownership and careful management can make a difference.",
         },
     ],
     "stats": [
-        {"label": "Decision style", "value": "Patient + Disciplined"},
-        {"label": "Primary sectors", "value": "Property + Early Stage"},
-        {"label": "Operating posture", "value": "Selective + Relationship-Led"},
+        {"label": "Investment style", "value": "Long-term"},
+        {"label": "Company focus", "value": "Technology + AI"},
+        {"label": "How we help", "value": "Capital + guidance"},
     ],
     "timeline": [
         {
-            "year": "Vision",
-            "title": "Define the family office mindset",
-            "description": "Create a clear point of view around stewardship, quality opportunities, and long-range conviction.",
+            "year": "Learn",
+            "title": "Understand the product",
+            "description": "We start with the problem, the customer, and why the team is well suited to solve it.",
         },
         {
-            "year": "Growth",
-            "title": "Build aligned relationships",
-            "description": "Cultivate trusted conversations with operators, founders, and strategic collaborators.",
+            "year": "Invest",
+            "title": "Back a clear plan",
+            "description": "We look for a sensible use of capital and a path to building a durable business.",
         },
         {
-            "year": "Scale",
-            "title": "Expand with discipline",
-            "description": "Pursue opportunities that fit the firm's values, pace, and appetite for durable value creation.",
+            "year": "Help",
+            "title": "Stay useful after the check",
+            "description": "When useful, we offer practical guidance, introductions, and an experienced outside perspective.",
         },
     ],
     "appointment_options": {
         "topics": [
             "Real Estate",
-            "Angel Investing",
+            "Technology / AI",
             "Partnership Inquiry",
             "General Introduction",
         ],
@@ -96,15 +96,15 @@ COMPANY_PROFILE = {
         {
             "name": "Srinivasan Santhanam",
             "role": "Co-Founder",
-            "bio": "Srinivasan is a results-oriented executive with a track record in global business transformation and enterprise technology. His experience leading complex initiatives informs JAIDES' disciplined approach to evaluating opportunities, building partnerships, and creating durable value.",
-            "focus": "Business transformation, investment discipline, and long-term value creation.",
+            "bio": "Srinivasan has led global business transformation and enterprise technology work. At JAIDES, he helps evaluate products, enterprise sales opportunities, and what it will take for a company to scale.",
+            "focus": "Enterprise technology, business transformation, and growth strategy.",
             "linkedin": "https://www.linkedin.com/in/srini-santhanam-7737556/",
         },
         {
             "name": "Deepa Lakshmanan",
             "role": "Co-Founder",
-            "bio": "Deepa brings more than 15 years of leadership experience across human resources, operations, contracts, finance, and organizational development. Her people-first perspective and operational insight help JAIDES assess leadership teams, strengthen partnerships, and support responsible growth.",
-            "focus": "People strategy, organizational development, and operational leadership.",
+            "bio": "Deepa brings more than 15 years of experience across human resources, operations, contracts, and finance. She helps founders think through hiring, leadership, team structure, and day-to-day operations.",
+            "focus": "People, hiring, operations, and organizational development.",
             "linkedin": "https://www.linkedin.com/in/deepa-lakshmanan-10071243/",
         },
     ],
