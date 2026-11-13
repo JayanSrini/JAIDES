@@ -407,6 +407,47 @@ button {
   line-height: 1.4;
 }
 
+.profile-link,
+.contact-email,
+.text-button {
+  color: var(--jade-800);
+  font-weight: 800;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3rem;
+}
+
+.profile-link {
+  display: inline-flex;
+  margin-top: 1.35rem;
+}
+
+.profile-link:hover,
+.contact-email:hover,
+.text-button:hover {
+  color: var(--jade-950);
+}
+
+.contact-label {
+  margin: 0;
+  color: var(--jade-700) !important;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-email {
+  display: inline-block;
+  overflow-wrap: anywhere;
+}
+
+.text-button {
+  margin-top: 0.75rem;
+  padding: 0;
+  background: transparent;
+  text-decoration: underline;
+}
+
 .timeline-card {
   position: relative;
   overflow: hidden;

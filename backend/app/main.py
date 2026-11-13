@@ -36,14 +36,14 @@ COMPANY_PROFILE = {
         "name": "JAIDES LLC",
         "tagline": "Real estate stewardship and angel investment with a long-view mindset.",
         "summary": (
-            "JAIDES LLC is presented here as a boutique family-led firm focused on"
-            " thoughtful property investment, strategic capital partnerships, and"
-            " trusted relationship-driven growth."
+            "JAIDES LLC is a family-led investment firm focused on thoughtful real"
+            " estate, strategic capital partnerships, and enduring value creation."
         ),
         "mission": (
             "Operate with patience, clarity, and disciplined stewardship across both"
             " property and private capital decisions."
         ),
+        "email": "jayansrini@jaides.com",
     },
     "highlights": [
         {
@@ -108,14 +108,16 @@ COMPANY_PROFILE = {
         {
             "name": "Srinivasan Santhanam",
             "role": "Co-Founder",
-            "bio": "Placeholder biography copy for site development. Srinivasan is described as bringing measured judgment, operational discipline, and a relationship-first perspective to both property decisions and early-stage investing.",
-            "focus": "Investment discipline, relationship building, and steady long-range decision-making.",
+            "bio": "Srinivasan is a results-oriented executive with a track record in global business transformation and enterprise technology. His experience leading complex initiatives informs JAIDES' disciplined approach to evaluating opportunities, building partnerships, and creating durable value.",
+            "focus": "Business transformation, investment discipline, and long-term value creation.",
+            "linkedin": "https://www.linkedin.com/in/srini-santhanam-7737556/",
         },
         {
             "name": "Deepa Lakshmanan",
             "role": "Co-Founder",
-            "bio": "Placeholder biography copy for site development. Deepa is described as combining thoughtful strategy, aesthetic sensibility, and a people-centered approach that helps shape the firm's partnerships and long-term vision.",
-            "focus": "Brand direction, strategic vision, and a detail-oriented perspective on partnership quality.",
+            "bio": "Deepa brings more than 15 years of leadership experience across human resources, operations, contracts, finance, and organizational development. Her people-first perspective and operational insight help JAIDES assess leadership teams, strengthen partnerships, and support responsible growth.",
+            "focus": "People strategy, organizational development, and operational leadership.",
+            "linkedin": "https://www.linkedin.com/in/deepa-lakshmanan-10071243/",
         },
     ],
 }

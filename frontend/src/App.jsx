@@ -7,9 +7,10 @@ const fallbackData = {
     name: 'JAIDES LLC',
     tagline: 'Real estate stewardship and angel investment with a long-view mindset.',
     summary:
-      'JAIDES LLC is presented here as a boutique family-led firm focused on thoughtful property investment, strategic capital partnerships, and trusted relationship-driven growth.',
+      'JAIDES LLC is a family-led investment firm focused on thoughtful real estate, strategic capital partnerships, and enduring value creation.',
     mission:
       'Operate with patience, clarity, and disciplined stewardship across both property and private capital decisions.',
+    email: 'jayansrini@jaides.com',
   },
   highlights: [
     {
@@ -78,16 +79,18 @@ const fallbackData = {
     {
       name: 'Srinivasan Santhanam',
       role: 'Co-Founder',
-      bio: 'Placeholder biography copy for site development. Srinivasan is described as bringing measured judgment, operational discipline, and a relationship-first perspective to both property decisions and early-stage investing.',
+      bio: 'Srinivasan is a results-oriented executive with a track record in global business transformation and enterprise technology. His experience leading complex initiatives informs JAIDES\' disciplined approach to evaluating opportunities, building partnerships, and creating durable value.',
       focus:
-        'Investment discipline, relationship building, and steady long-range decision-making.',
+        'Business transformation, investment discipline, and long-term value creation.',
+      linkedin: 'https://www.linkedin.com/in/srini-santhanam-7737556/',
     },
     {
       name: 'Deepa Lakshmanan',
       role: 'Co-Founder',
-      bio: 'Placeholder biography copy for site development. Deepa is described as combining thoughtful strategy, aesthetic sensibility, and a people-centered approach that helps shape the firm\'s partnerships and long-term vision.',
+      bio: 'Deepa brings more than 15 years of leadership experience across human resources, operations, contracts, finance, and organizational development. Her people-first perspective and operational insight help JAIDES assess leadership teams, strengthen partnerships, and support responsible growth.',
       focus:
-        'Brand direction, strategic vision, and a detail-oriented perspective on partnership quality.',
+        'People strategy, organizational development, and operational leadership.',
+      linkedin: 'https://www.linkedin.com/in/deepa-lakshmanan-10071243/',
     },
   ],
 }
@@ -243,8 +246,8 @@ export default function App() {
       <>
         <SectionHeader
           eyebrow="Focus Areas"
-          title="Services and capabilities presented in a polished, investor-friendly format."
-          text="This page gives the site more substance by showing what JAIDES does, how it thinks, and the type of conversations it wants to invite."
+          title="Disciplined capital, grounded judgment, and an operator's perspective."
+          text="JAIDES evaluates each opportunity through the lens of long-term fundamentals, aligned leadership, and the potential to create meaningful, sustainable value."
         />
         <div className="card-grid">
           {data.services.map((item, index) => (
@@ -279,8 +282,8 @@ export default function App() {
       <>
         <SectionHeader
           eyebrow="Leadership"
-          title="Dedicated founder profiles with room for fuller personal stories later."
-          text="For now these are polished placeholders, but they already give the site a more complete and professional structure."
+          title="Experienced leadership with a shared commitment to thoughtful growth."
+          text="JAIDES combines enterprise transformation expertise with people, operations, and organizational leadership to bring a balanced perspective to every opportunity."
         />
         <div className="founder-grid founder-grid-detailed">
           {data.founders.map((founder) => (
@@ -290,6 +293,14 @@ export default function App() {
               <h3>{founder.name}</h3>
               <p>{founder.bio}</p>
               <div className="focus-chip">{founder.focus}</div>
+              <a
+                className="profile-link"
+                href={founder.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View LinkedIn profile
+              </a>
             </article>
           ))}
         </div>
@@ -303,8 +314,8 @@ export default function App() {
         <section className="schedule-panel">
           <SectionHeader
             eyebrow="Appointments"
-            title="Invite conversations directly from the site."
-            text="This makes the business feel active and accessible right away, even while the copy is still being refined."
+            title="Start a focused conversation with JAIDES."
+            text="Share a few details about your opportunity or partnership idea, and our team will follow up to find the right time to connect."
           />
           <div className="appointment-options">
             <article className="mini-card">
@@ -391,21 +402,29 @@ export default function App() {
       <>
         <SectionHeader
           eyebrow="Contact"
-          title="A closing page that feels established, not empty."
-          text="This section rounds out the experience with office-style details, partnership language, and a clear reason to reach out."
+          title="Let's explore what we can build for the long term."
+          text="We welcome thoughtful introductions from property owners, founders, operators, and partners whose values align with ours."
         />
         <div className="contact-grid">
           <article className="mini-card">
-            <h3>Primary office style</h3>
-            <p>Family-led, selective, and relationship-oriented.</p>
+            <p className="contact-label">Direct inquiries</p>
+            <h3>Email JAIDES</h3>
+            <a className="contact-email" href={`mailto:${data.company.email}`}>
+              {data.company.email}
+            </a>
           </article>
           <article className="mini-card">
-            <h3>Conversations welcomed</h3>
-            <p>Real estate opportunities, angel investing, introductions, and aligned partnerships.</p>
+            <p className="contact-label">What we discuss</p>
+            <h3>Investment opportunities</h3>
+            <p>Real estate, early-stage ventures, strategic introductions, and aligned capital partnerships.</p>
           </article>
           <article className="mini-card">
-            <h3>Suggested contact path</h3>
-            <p>Use the scheduling page for an introduction request and tailored follow-up.</p>
+            <p className="contact-label">Prefer a meeting?</p>
+            <h3>Schedule a conversation</h3>
+            <p>Tell us what you would like to discuss and suggest a time that works for you.</p>
+            <button className="text-button" onClick={() => setActiveView('schedule')}>
+              Request an appointment
+            </button>
           </article>
         </div>
       </>
