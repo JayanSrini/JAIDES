@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://127.0.0.1:8000'
 
@@ -131,8 +131,10 @@ function SectionHeader({ eyebrow, title, text }) {
 export default function App() {
   const [data, setData] = useState(fallbackData)
   const [activeView, setActiveView] = useState('home')
+  const [transitionView, setTransitionView] = useState(null)
   const [form, setForm] = useState(initialForm)
   const [requestStatus, setRequestStatus] = useState('')
+  const transitionTimers = useRef([])
 
   useEffect(() => {
     let active = true
@@ -170,6 +172,36 @@ export default function App() {
     }
   }, [])
 
+  useEffect(() => {
+    return () => {
+      transitionTimers.current.forEach((timer) => window.clearTimeout(timer))
+    }
+  }, [])
+
+  function navigateTo(nextView) {
+    if (nextView === activeView || transitionView) {
+      return
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setActiveView(nextView)
+      window.scrollTo({ top: 0, behavior: 'auto' })
+      return
+    }
+
+    setTransitionView(nextView)
+    transitionTimers.current = [
+      window.setTimeout(() => {
+        setActiveView(nextView)
+        window.scrollTo({ top: 0, behavior: 'auto' })
+      }, 460),
+      window.setTimeout(() => {
+        setTransitionView(null)
+        transitionTimers.current = []
+      }, 950),
+    ]
+  }
+
   function updateForm(event) {
     const { name, value } = event.target
     setForm((current) => ({ ...current, [name]: value }))
@@ -203,10 +235,10 @@ export default function App() {
             <h1>{data.company.tagline}</h1>
             <p className="hero-text">{data.company.summary}</p>
             <div className="hero-actions">
-              <button className="primary-button" onClick={() => setActiveView('schedule')}>
+              <button className="primary-button" onClick={() => navigateTo('schedule')}>
                 Schedule an appointment
               </button>
-              <button className="secondary-button" onClick={() => setActiveView('founders')}>
+              <button className="secondary-button" onClick={() => navigateTo('founders')}>
                 Meet the founders
               </button>
             </div>
@@ -456,7 +488,7 @@ export default function App() {
             <p className="contact-label">Prefer a meeting?</p>
             <h3>Schedule a conversation</h3>
             <p>Tell us what you would like to discuss and suggest a time that works for you.</p>
-            <button className="text-button" onClick={() => setActiveView('schedule')}>
+            <button className="text-button" onClick={() => navigateTo('schedule')}>
               Request an appointment
             </button>
           </article>
@@ -480,7 +512,7 @@ export default function App() {
           <button
             className="brand-mark brand-button"
             type="button"
-            onClick={() => setActiveView('home')}
+            onClick={() => navigateTo('home')}
             aria-label="JAIDES LLC home"
           >
             <span className="brand-monogram">J</span>
@@ -495,7 +527,7 @@ export default function App() {
                 key={view.id}
                 type="button"
                 className={activeView === view.id ? 'nav-tab nav-tab-active' : 'nav-tab'}
-                onClick={() => setActiveView(view.id)}
+                onClick={() => navigateTo(view.id)}
                 aria-current={activeView === view.id ? 'page' : undefined}
               >
                 {view.label}
@@ -507,6 +539,24 @@ export default function App() {
 
       <main className="page-content" key={activeView}>{viewContent[activeView]}</main>
 
+      {transitionView ? (
+        <div className="section-transition" aria-hidden="true">
+          {[0, 1, 2, 3].map((index) => (
+            <span
+              className="transition-slat"
+              key={index}
+              style={{ '--slat-index': index }}
+            />
+          ))}
+          <div className="transition-title">
+            <span>
+              JAIDES / {String(views.findIndex((view) => view.id === transitionView) + 1).padStart(2, '0')}
+            </span>
+            <strong>{views.find((view) => view.id === transitionView)?.label}</strong>
+          </div>
+        </div>
+      ) : null}
+
       <footer className="site-footer">
         <div>
           <strong>JAIDES LLC</strong>
@@ -514,7 +564,7 @@ export default function App() {
         </div>
         <div className="footer-actions">
           <a href={`mailto:${data.company.email}`}>{data.company.email}</a>
-          <button type="button" onClick={() => setActiveView('contact')}>Contact</button>
+          <button type="button" onClick={() => navigateTo('contact')}>Contact</button>
         </div>
         <p className="footer-disclaimer">
           Information on this site is for general informational purposes only and does not
