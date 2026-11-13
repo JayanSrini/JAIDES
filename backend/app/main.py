@@ -1,9 +1,7 @@
 import os
-from typing import Literal
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr
 
 app = FastAPI(title="JAIDES LLC API")
 
@@ -20,16 +18,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-class AppointmentRequest(BaseModel):
-    name: str
-    email: EmailStr
-    interest: Literal["Real Estate", "Angel Investing", "Partnership Inquiry", "General Introduction"]
-    preferred_date: str
-    preferred_time: str
-    notes: str
-
 
 COMPANY_PROFILE = {
     "company": {
@@ -122,9 +110,6 @@ COMPANY_PROFILE = {
     ],
 }
 
-APPOINTMENT_REQUESTS: list[AppointmentRequest] = []
-
-
 @app.get("/")
 def root() -> dict:
     return {"service": "JAIDES LLC API", "status": "online"}
@@ -133,16 +118,6 @@ def root() -> dict:
 @app.get("/api/profile")
 def get_profile() -> dict:
     return COMPANY_PROFILE
-
-
-@app.post("/api/appointments")
-def create_appointment(request: AppointmentRequest) -> dict:
-    APPOINTMENT_REQUESTS.append(request)
-    return {
-        "status": "received",
-        "message": f"Thanks, {request.name}. Your appointment request has been saved for review.",
-    }
-
 
 @app.get("/api/health")
 def healthcheck() -> dict:

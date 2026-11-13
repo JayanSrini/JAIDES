@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react'
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://127.0.0.1:8000'
 
+function getLocalToday() {
+  const today = new Date()
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset())
+  return today.toISOString().slice(0, 10)
+}
+
 const fallbackData = {
   company: {
     name: 'JAIDES LLC',
@@ -140,7 +146,16 @@ export default function App() {
       })
       .then((payload) => {
         if (active) {
-          setData(payload)
+          setData({
+            ...fallbackData,
+            ...payload,
+            company: { ...fallbackData.company, ...payload.company },
+            appointment_options: {
+              ...fallbackData.appointment_options,
+              ...payload.appointment_options,
+            },
+            founders: payload.founders ?? fallbackData.founders,
+          })
           setForm((current) => ({
             ...current,
             interest: payload.appointment_options?.topics?.[0] ?? current.interest,
@@ -160,33 +175,23 @@ export default function App() {
     setForm((current) => ({ ...current, [name]: value }))
   }
 
-  async function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault()
-    setRequestStatus('Sending your request...')
+    const subject = encodeURIComponent(`JAIDES appointment request: ${form.interest}`)
+    const body = encodeURIComponent([
+      'Hello JAIDES,',
+      '',
+      `My name is ${form.name}. I would like to discuss ${form.interest}.`,
+      `Preferred date: ${form.preferred_date}`,
+      `Preferred time: ${form.preferred_time}`,
+      `Reply email: ${form.email}`,
+      '',
+      'Additional context:',
+      form.notes,
+    ].join('\n'))
 
-    try {
-      const response = await fetch(`${apiBaseUrl}/api/appointments`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
-      })
-
-      if (!response.ok) {
-        throw new Error('Unable to submit request')
-      }
-
-      const payload = await response.json()
-      setRequestStatus(payload.message)
-      setForm({
-        ...initialForm,
-        interest: data.appointment_options.topics[0],
-        preferred_time: data.appointment_options.times[0],
-      })
-    } catch (error) {
-      setRequestStatus('The request form is ready, but the backend is not responding yet.')
-    }
+    window.location.href = `mailto:${data.company.email}?subject=${subject}&body=${body}`
+    setRequestStatus('Your email app should open with the appointment details ready to send.')
   }
 
   function renderHome() {
@@ -208,8 +213,8 @@ export default function App() {
           </div>
 
           <aside className="hero-panel">
-            <p className="panel-label">Positioning</p>
-            <h2>Clean, intentional, and built for trust.</h2>
+            <p className="panel-label">Our approach</p>
+            <h2>Conviction balanced by discipline.</h2>
             <p>{data.company.mission}</p>
             <div className="stats-grid">
               {data.stats.map((item) => (
@@ -225,7 +230,8 @@ export default function App() {
         <section className="focus-section">
           <SectionHeader
             eyebrow="At a glance"
-            title="A refined digital presence for real estate, private capital, and partnership conversations."
+            title="Two investment disciplines. One long-term perspective."
+            text="We bring the same patient, relationship-led approach to tangible real estate assets and promising early-stage businesses."
           />
           <div className="card-grid">
             {data.highlights.map((item, index) => (
@@ -293,14 +299,16 @@ export default function App() {
               <h3>{founder.name}</h3>
               <p>{founder.bio}</p>
               <div className="focus-chip">{founder.focus}</div>
-              <a
-                className="profile-link"
-                href={founder.linkedin}
-                target="_blank"
-                rel="noreferrer"
-              >
-                View LinkedIn profile
-              </a>
+              {founder.linkedin ? (
+                <a
+                  className="profile-link"
+                  href={founder.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View LinkedIn profile
+                </a>
+              ) : null}
             </article>
           ))}
         </div>
@@ -327,7 +335,7 @@ export default function App() {
               </ul>
             </article>
             <article className="mini-card">
-              <h3>Example meeting windows</h3>
+              <h3>Preferred meeting windows</h3>
               <ul>
                 {data.appointment_options.times.map((time) => (
                   <li key={time}>{time}</li>
@@ -365,7 +373,14 @@ export default function App() {
           </label>
           <label>
             Preferred date
-            <input name="preferred_date" type="date" value={form.preferred_date} onChange={updateForm} required />
+            <input
+              name="preferred_date"
+              type="date"
+              min={getLocalToday()}
+              value={form.preferred_date}
+              onChange={updateForm}
+              required
+            />
           </label>
           <label>
             Preferred time
@@ -391,7 +406,11 @@ export default function App() {
           <button className="primary-button submit-button" type="submit">
             Request appointment
           </button>
-          <p className="status-text">{requestStatus}</p>
+          <p className="appointment-note">
+            Selecting Request appointment opens your email app with these details filled in.
+            Appointments are confirmed by follow-up email.
+          </p>
+          <p className="status-text" role="status" aria-live="polite">{requestStatus}</p>
         </form>
       </div>
     )
@@ -442,8 +461,13 @@ export default function App() {
   return (
     <div className="page-shell">
       <header className="hero-section">
-        <nav className="topbar">
-          <button className="brand-mark brand-button" onClick={() => setActiveView('home')}>
+        <nav className="topbar" aria-label="Primary navigation">
+          <button
+            className="brand-mark brand-button"
+            type="button"
+            onClick={() => setActiveView('home')}
+            aria-label="JAIDES LLC home"
+          >
             <span className="brand-monogram">J</span>
             <span className="brand-text">
               <strong>JAIDES LLC</strong>
@@ -454,8 +478,10 @@ export default function App() {
             {views.map((view) => (
               <button
                 key={view.id}
+                type="button"
                 className={activeView === view.id ? 'nav-tab nav-tab-active' : 'nav-tab'}
                 onClick={() => setActiveView(view.id)}
+                aria-current={activeView === view.id ? 'page' : undefined}
               >
                 {view.label}
               </button>
@@ -464,7 +490,22 @@ export default function App() {
         </nav>
       </header>
 
-      <main>{viewContent[activeView]}</main>
+      <main className="page-content" key={activeView}>{viewContent[activeView]}</main>
+
+      <footer className="site-footer">
+        <div>
+          <strong>JAIDES LLC</strong>
+          <p>Real estate stewardship and angel investment with a long-view mindset.</p>
+        </div>
+        <div className="footer-actions">
+          <a href={`mailto:${data.company.email}`}>{data.company.email}</a>
+          <button type="button" onClick={() => setActiveView('contact')}>Contact</button>
+        </div>
+        <p className="footer-disclaimer">
+          Information on this site is for general informational purposes only and does not
+          constitute an offer, solicitation, or investment advice.
+        </p>
+      </footer>
     </div>
   )
 }

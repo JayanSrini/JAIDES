@@ -59,6 +59,15 @@ button {
   cursor: pointer;
 }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(47, 124, 112, 0.38);
+  outline-offset: 3px;
+}
+
 .page-shell {
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
@@ -67,6 +76,10 @@ button {
 
 .hero-section {
   padding: 0.5rem 0 2rem;
+}
+
+.page-content {
+  animation: page-enter 320ms ease both;
 }
 
 .topbar {
@@ -510,6 +523,74 @@ button {
   margin: 0;
 }
 
+.appointment-note {
+  margin: 0.25rem 0 0;
+  color: var(--ink-700);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.appointment-note a {
+  color: var(--jade-800);
+  font-weight: 700;
+}
+
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem 3rem;
+  margin-top: 5rem;
+  padding: 2rem 0 0.5rem;
+  border-top: 1px solid rgba(24, 69, 64, 0.16);
+}
+
+.site-footer strong {
+  letter-spacing: 0.08em;
+}
+
+.site-footer p {
+  margin: 0.45rem 0 0;
+  color: var(--ink-700);
+  line-height: 1.6;
+}
+
+.footer-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.footer-actions a,
+.footer-actions button {
+  padding: 0;
+  background: transparent;
+  color: var(--jade-800);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.footer-actions a:hover,
+.footer-actions button:hover {
+  color: var(--jade-950);
+}
+
+.footer-disclaimer {
+  grid-column: 1 / -1;
+  max-width: 54rem;
+  font-size: 0.72rem;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 960px) {
   .topbar,
   .hero-grid,
@@ -524,6 +605,14 @@ button {
   .topbar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-disclaimer {
+    grid-column: 1;
   }
 
   .nav-tabs {
@@ -554,5 +643,20 @@ button {
   .primary-button,
   .secondary-button {
     width: 100%;
+  }
+
+  .footer-actions {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
